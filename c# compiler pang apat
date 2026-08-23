@@ -1,0 +1,65 @@
+using System;
+
+class Program
+{
+    const int Width = 63;
+    const int Height = 31;
+
+    static void Main()
+    {
+        // Center coordinates of the grid
+        double cx = Width / 2.0;
+        double cy = Height / 2.0;
+        
+        // Scale factor to make the star fit nicely in the 63x31 grid
+        double scale = Height * 0.45; 
+
+        // Arrays to store the 5 outer points of the star
+        double[] x = new double[5];
+        double[] y = new double[5];
+
+        // Calculate the 5 peak coordinates using trigonometry
+        for (int i = 0; i < 5; i++)
+        {
+            // Start from the top (-PI/2) and rotate by 144 degrees for each point
+            double angle = -Math.PI / 2 + i * 2 * Math.PI * 2 / 5;
+            
+            // Adjust X by multiplying by 2 to compensate for narrow terminal characters
+            x[i] = cx + Math.Cos(angle) * scale * 2.0; 
+            y[i] = cy + Math.Sin(angle) * scale;
+        }
+
+        // Loop through the grid coordinates
+        for (int r = 0; r < Height; r++)
+        {
+            for (int c = 0; c < Width; c++)
+            {
+                // Check if the current pixel is inside the 5-point star
+                if (IsInsideStar(c, r, x, y))
+                {
+                    Console.Write("*");
+                }
+                else
+                {
+                    Console.Write(" ");
+                }
+            }
+            Console.WriteLine();
+        }
+    }
+
+    // Mathematical Ray-Casting algorithm to check if a point is inside the star polygon
+    static bool IsInsideStar(double px, double py, double[] x, double[] y)
+    {
+        bool inside = false;
+        for (int i = 0, j = 4; i < 5; j = i++)
+        {
+            if (((y[i] > py) != (y[j] > py)) &&
+                (px < (x[j] - x[i]) * (py - y[i]) / (y[j] - y[i]) + x[i]))
+            {
+                inside = !inside;
+            }
+        }
+        return inside;
+    }
+}
