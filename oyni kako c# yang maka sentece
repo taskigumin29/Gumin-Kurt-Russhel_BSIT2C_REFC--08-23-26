@@ -1,0 +1,18 @@
+using System;
+
+class Program
+{
+    static void Main()
+    {
+        int userAge = 20;
+        string userName = "kurt pogi";
+        bool isAccountActive = true;
+        double accountBalance = 696969.69;
+
+        // Combines all variables into a single sentence
+        Console.WriteLine($"im {userName} im {userAge} years old, a i bought a mansion for 696969.69 and the store was legit
+          and {isAccountActive}
+         , and the money i have left is 
+          still ${accountBalance}.");
+    }
+}
