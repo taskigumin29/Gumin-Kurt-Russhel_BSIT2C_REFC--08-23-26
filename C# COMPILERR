@@ -1,0 +1,22 @@
+using System; 
+
+namespace HelloWorld 
+{ 
+    public class Program 
+    { 
+        public static void Main(string[] args) 
+        { 
+            string name = "kurt pogi"; 
+            int age = 20; 
+            double price = 696969.0; 
+            char grade = 'b'; 
+            bool isStudent = true; 
+            
+            Console.WriteLine("what is your name? " + name); 
+            Console.WriteLine("how old are you boss? " + age); 
+            Console.WriteLine("tag magkano boss? " + price); 
+            Console.WriteLine("ilan grade mo boss oma? " + grade); 
+            Console.WriteLine("Is student? " + isStudent);
+        } 
+    } 
+}
